@@ -149,8 +149,6 @@ button:focus-visible{outline:2px solid var(--alg-purple);outline-offset:2px}
       <h3>Подстандарты · нажмите, чтобы скрыть</h3>
       <div id="groups"></div>
       </div>
-      <label><input type="checkbox" id="soft" checked> связи из уроков-повторений</label>
-      <label class="exp"><input type="checkbox" id="expert" checked> экспертные мосты между разделами (черновик, фиолетовый пунктир)</label>
     </div>
   </div>
   <div class="right">
@@ -452,8 +450,6 @@ function renderSide(){
 }
 function setMode(m){ st.mode = m; $('mCrit').setAttribute('aria-pressed', m === 'crit'); $('mSkill').setAttribute('aria-pressed', m === 'skill'); buildModel(); select(null); renderSide(); }
 $('mCrit').onclick = () => setMode('crit'); $('mSkill').onclick = () => setMode('skill');
-$('expert').onchange = e => { st.expert = e.target.checked; const keep = st.sel; buildModel(); select(keep && M.nodes.has(keep) ? keep : null); renderSide(); };
-$('soft').onchange = e => { st.soft = e.target.checked; const keep = st.sel; buildModel(); select(keep && M.nodes.has(keep) ? keep : null); renderSide(); };
 buildModel(); renderSide(); requestAnimationFrame(frame);
 </script>
 
