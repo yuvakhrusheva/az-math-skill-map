@@ -40,7 +40,10 @@ h1 em{font-style:normal;color:var(--accent)}
 .modes button{border:0;background:transparent;color:var(--muted);font:600 13px var(--f-body);padding:8px 16px;cursor:pointer;letter-spacing:-.01em}
 .modes button[aria-pressed="true"]{background:var(--alg-purple);color:var(--alg-white)}
 .modes button:hover:not([aria-pressed="true"]){color:var(--fg)}
-.legend{box-shadow:var(--shadow);position:fixed;left:max(16px,env(safe-area-inset-left,0px));bottom:max(20px,env(safe-area-inset-bottom,0px));width:300px;box-sizing:border-box;background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);padding:14px 16px;backdrop-filter:blur(8px);max-height:min(46vh,calc(100vh - 470px));min-height:120px;overflow-y:auto;overscroll-behavior:contain}
+.legend{box-shadow:var(--shadow);width:300px;box-sizing:border-box;background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);padding:14px 16px;backdrop-filter:blur(8px);flex:0 1 auto;min-height:0;overflow-y:auto;overscroll-behavior:contain;margin-top:auto}
+.legend.wide{width:380px}
+.left{min-height:0}
+.left > div:first-child{flex:none}
 *{scrollbar-width:thin;scrollbar-color:rgba(88,0,229,.28) transparent}
 ::-webkit-scrollbar{width:8px;height:8px}
 ::-webkit-scrollbar-track{background:transparent}
@@ -101,7 +104,7 @@ button:focus-visible{outline:2px solid var(--alg-purple);outline-offset:2px}
   .wrap{flex-direction:column}
   h1{font-size:38px;margin:12px 0 8px}
   .sub{display:none}
-  .legend{position:static;width:auto;max-height:22vh;min-height:0}
+  .legend,.legend.wide{width:auto;max-height:22vh}
   .right{position:fixed;left:0;right:0;bottom:0;padding:0 max(16px,env(safe-area-inset-right,0px)) max(16px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));align-items:stretch}
   .card{width:100%;max-height:48vh}
   .help{display:none}
@@ -419,6 +422,7 @@ const plural = (n, a, b, c) => { const m = n % 10, h = n % 100; return m === 1 &
 
 function renderViewPanel(){
   const V = $('viewPanel'); $('progPanel').hidden = st.view !== 'prog';
+  document.querySelector('.legend').classList.toggle('wide', st.view !== 'prog');
   if (st.view === 'prog'){ V.innerHTML = ''; return; }
   const ids = [...M.nodes.keys()], cnt = {ok:0, mid:0, gap:0, none:0};
   const val = id => st.view === 'class' ? classScore(id) : scoreOf(st.student, id);
