@@ -373,7 +373,7 @@ function renderCard(){
     ${progressBlock(n)}
     <div class="big"><b>${selSet.size}</b><span>${plural(selSet.size, 'пререквизит', 'пререквизита', 'пререквизитов')} всего</span></div>
     <p class="hint">Всё, что ребёнку нужно освоить до этого${st.mode === 'crit' ? ' критерия' : ' навыка'}, если пройти по цепочке связей до конца.</p>
-    <h3>Опирается напрямую · ${pre.length}</h3><ul>${pre.map(e => item(e.s, e)).join('') || '<li class="hint">Разминок перед этой темой нет</li>'}</ul>
+    <h3>Опирается напрямую · ${pre.length}</h3><ul>${pre.map(e => item(e.s, e)).join('') || '<li class="hint">Пререквизитов нет — это одна из стартовых тем</li>'}</ul>
     <h3>Открывает · ${post.length}</h3><ul>${post.map(e => item(e.t, e)).join('') || '<li class="hint">Пока ни на что не ведёт</li>'}</ul>`;
   C.hidden = false; C.scrollTop = 0;
   $('close').onclick = () => select(null);
